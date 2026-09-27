@@ -3,13 +3,70 @@ const db = require("../database/db");
 
 const router = express.Router();
 
-// Display all lab experiments
+// Display lab experiments with search and filters
 router.get("/", (req, res) => {
-    const labs = db
-        .prepare("SELECT * FROM labs ORDER BY experiment_no")
-        .all();
+    const {
+        search = "",
+        subject = "",
+        status = ""
+    } = req.query;
 
-    res.render("labs", { labs });
+    let query = `
+        SELECT *
+        FROM labs
+        WHERE 1=1
+    `;
+
+    const params = [];
+
+    if (search.trim()) {
+        query += `
+            AND (
+                CAST(experiment_no AS TEXT) LIKE ?
+                OR title LIKE ?
+                OR subject LIKE ?
+            )
+        `;
+
+        const searchTerm = `%${search.trim()}%`;
+
+        params.push(
+            searchTerm,
+            searchTerm,
+            searchTerm
+        );
+    }
+
+    if (subject) {
+        query += " AND subject = ?";
+        params.push(subject);
+    }
+
+    if (status === "completed") {
+        query += " AND completed = 1";
+    } else if (status === "pending") {
+        query += " AND completed = 0";
+    }
+
+    query += " ORDER BY experiment_no";
+
+    const labs = db.prepare(query).all(...params);
+
+    const subjects = db.prepare(`
+        SELECT DISTINCT subject
+        FROM labs
+        ORDER BY subject
+    `).all();
+
+    res.render("labs", {
+        labs,
+        subjects,
+        filters: {
+            search,
+            subject,
+            status
+        }
+    });
 });
 
 // Show the add experiment form
