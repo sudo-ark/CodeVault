@@ -39,6 +39,29 @@
             <% if (lab.output) { %>
                 <p><strong>Output:</strong> <%= lab.output %></p>
             <% } %>
+            
+            <p>
+                <strong>Status:</strong>
+                <%= lab.completed ? "Completed" : "Pending" %>
+            </p>
+
+            <form action="/labs/<%= lab.id %>/complete" method="POST">
+                <button type="submit">
+                    <%= lab.completed ? "Mark as Pending" : "Mark as Completed" %>
+                </button>
+            </form>
+
+            <a href="/labs/<%= lab.id %>/edit">
+                Edit
+            </a>
+
+            <form
+                action="/labs/<%= lab.id %>/delete"
+                method="POST"
+                style="display: inline;"
+            >
+                <button type="submit">Delete</button>
+            </form>
 
             <hr>
         </article>

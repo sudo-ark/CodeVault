@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Lab Experiment - CodeVault</title>
+</head>
+<body>
+
+    <h1>Edit Lab Experiment</h1>
+
+    <form action="/labs/<%= lab.id %>/edit" method="POST">
+
+        <label for="experiment_no">Experiment Number</label>
+        <input
+            type="number"
+            id="experiment_no"
+            name="experiment_no"
+            value="<%= lab.experiment_no %>"
+            required
+        >
+
+        <br><br>
+
+        <label for="title">Experiment Title</label>
+        <input
+            type="text"
+            id="title"
+            name="title"
+            value="<%= lab.title %>"
+            required
+        >
+
+        <br><br>
+
+        <label for="subject">Subject</label>
+        <input
+            type="text"
+            id="subject"
+            name="subject"
+            value="<%= lab.subject %>"
+            required
+        >
+
+        <br><br>
+
+        <label for="aim">Aim</label>
+        <textarea id="aim" name="aim" required><%= lab.aim %></textarea>
+
+        <br><br>
+
+        <label for="theory">Theory / Notes</label>
+        <textarea id="theory" name="theory"><%= lab.theory %></textarea>
+
+        <br><br>
+
+        <label for="code">Code</label>
+        <textarea id="code" name="code" rows="10"><%= lab.code %></textarea>
+
+        <br><br>
+
+        <label for="output">Output</label>
+        <textarea id="output" name="output"><%= lab.output %></textarea>
+
+        <br><br>
+
+        <button type="submit">Update Experiment</button>
+
+    </form>
+
+    <br>
+
+    <a href="/labs">← Back to Experiments</a>
+
+</body>
+</html>
