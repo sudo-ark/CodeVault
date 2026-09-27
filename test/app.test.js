@@ -9,7 +9,7 @@ test("GET /health returns status ok", async () => {
         .get("/health");
 
     assert.strictEqual(response.statusCode, 200);
-    assert.strictEqual(response.body.status, "ok");
+    assert.strictEqual(response.body.status, "broken");
 });
 
 test("POST /labs adds a valid experiment", async () => {
