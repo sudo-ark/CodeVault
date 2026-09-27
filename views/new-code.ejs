@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Code - CodeVault</title>
+</head>
+<body>
+
+    <h1>Add Code to Archive</h1>
+
+    <form action="/code" method="POST">
+
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" required>
+
+        <br><br>
+
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" required>
+
+        <br><br>
+
+        <label for="category">Category</label>
+        <input type="text" id="category" name="category" required>
+
+        <br><br>
+
+        <label for="language">Programming Language</label>
+        <input type="text" id="language" name="language" required>
+
+        <br><br>
+
+        <label for="description">Description</label>
+        <textarea id="description" name="description"></textarea>
+
+        <br><br>
+
+        <label for="code">Code</label>
+        <textarea id="code" name="code" rows="15"></textarea>
+
+        <br><br>
+
+        <label for="tags">Tags</label>
+        <input
+            type="text"
+            id="tags"
+            name="tags"
+            placeholder="sorting, arrays, loops"
+        >
+
+        <br><br>
+
+        <button type="submit">Save Code</button>
+
+    </form>
+
+    <br>
+
+    <a href="/code">← Back to Code Archive</a>
+
+</body>
+</html>

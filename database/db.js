@@ -14,7 +14,19 @@ db.exec(`
         output TEXT,
         completed INTEGER DEFAULT 0,
         created_at DATETIME DEFAULT CURRENT_TIMESTAMP
-    )
+    );
+
+    CREATE TABLE IF NOT EXISTS code_archive (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        title TEXT NOT NULL,
+        subject TEXT NOT NULL,
+        category TEXT NOT NULL,
+        language TEXT NOT NULL,
+        description TEXT,
+        code TEXT,
+        tags TEXT,
+        created_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
 `);
 
 module.exports = db;
