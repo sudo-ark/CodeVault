@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add DSA Problem - CodeVault</title>
+</head>
+<body>
+
+    <h1>Add DSA Problem</h1>
+
+    <form action="/dsa" method="POST">
+
+        <label for="title">Problem Title</label>
+        <input type="text" id="title" name="title" required>
+
+        <br><br>
+
+        <label for="topic">Topic</label>
+        <input type="text" id="topic" name="topic" required>
+
+        <br><br>
+
+        <label for="difficulty">Difficulty</label>
+        <select id="difficulty" name="difficulty" required>
+            <option value="">Select difficulty</option>
+            <option value="Easy">Easy</option>
+            <option value="Medium">Medium</option>
+            <option value="Hard">Hard</option>
+        </select>
+
+        <br><br>
+
+        <label for="platform">Platform</label>
+        <input type="text" id="platform" name="platform">
+
+        <br><br>
+
+        <label for="language">Language</label>
+        <input type="text" id="language" name="language">
+
+        <br><br>
+
+        <label for="approach">Approach</label>
+        <textarea id="approach" name="approach"></textarea>
+
+        <br><br>
+
+        <label for="solution">Solution</label>
+        <textarea id="solution" name="solution" rows="10"></textarea>
+
+        <br><br>
+
+        <label for="time_complexity">Time Complexity</label>
+        <input
+            type="text"
+            id="time_complexity"
+            name="time_complexity"
+            placeholder="e.g. O(n)"
+        >
+
+        <br><br>
+
+        <label for="space_complexity">Space Complexity</label>
+        <input
+            type="text"
+            id="space_complexity"
+            name="space_complexity"
+            placeholder="e.g. O(n)"
+        >
+
+        <br><br>
+
+        <button type="submit">Save Problem</button>
+
+    </form>
+
+    <br>
+
+    <a href="/dsa">← Back to DSA Problems</a>
+
+</body>
+</html>
