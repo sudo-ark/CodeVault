@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeVault</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
 
@@ -13,9 +14,11 @@
         Academic Code, Lab & DSA Management System
     </p>
 
-    <nav>
-        <a href="/labs">Lab Manager</a> |
-        <a href="/dsa">DSA Tracker</a> |
+    <nav class="main-nav">
+        <a href="/" class="brand">CodeVault</a>
+        <a href="/">Dashboard</a>
+        <a href="/labs">Lab Manager</a>
+        <a href="/dsa">DSA Tracker</a>
         <a href="/code">Code Archive</a>
     </nav>
 
@@ -23,20 +26,24 @@
 
     <h2>Dashboard</h2>
 
-    <section>
-        <h3>Lab Experiments</h3>
-        <p><%= labCount %></p>
-    </section>
+    <div class="stats-grid">
 
-    <section>
-        <h3>DSA Problems</h3>
-        <p><%= dsaCount %></p>
-    </section>
+        <section>
+            <h3>Lab Experiments</h3>
+            <p><%= labCount %></p>
+        </section>
 
-    <section>
-        <h3>Code Entries</h3>
-        <p><%= codeCount %></p>
-    </section>
+        <section>
+            <h3>DSA Problems</h3>
+            <p><%= dsaCount %></p>
+        </section>
+
+        <section>
+            <h3>Code Entries</h3>
+            <p><%= codeCount %></p>
+        </section>
+
+    </div>
 
     <hr>
 

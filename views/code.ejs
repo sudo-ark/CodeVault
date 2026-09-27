@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code Archive - CodeVault</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
+
+    <nav class="main-nav">
+        <a href="/" class="brand">CodeVault</a>
+        <a href="/">Dashboard</a>
+        <a href="/labs">Lab Manager</a>
+        <a href="/dsa">DSA Tracker</a>
+        <a href="/code">Code Archive</a>
+    </nav>
 
     <h1>Code Archive</h1>
 
@@ -71,7 +82,9 @@
     <hr>
 
     <% if (codeEntries.length === 0) { %>
+
         <p>No code matches your search or filters.</p>
+
     <% } %>
 
     <% codeEntries.forEach(entry => { %>
@@ -96,22 +109,29 @@
             </p>
 
             <% if (entry.description) { %>
+
                 <p>
                     <strong>Description:</strong>
                     <%= entry.description %>
                 </p>
+
             <% } %>
 
             <% if (entry.tags) { %>
+
                 <p>
                     <strong>Tags:</strong>
                     <%= entry.tags %>
                 </p>
+
             <% } %>
 
             <% if (entry.code) { %>
+
                 <h3>Code</h3>
+
                 <pre><%= entry.code %></pre>
+
             <% } %>
 
             <a href="/code/<%= entry.id %>/edit">
