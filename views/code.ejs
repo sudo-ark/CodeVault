@@ -114,6 +114,18 @@
                 <pre><%= entry.code %></pre>
             <% } %>
 
+            <a href="/code/<%= entry.id %>/edit">
+                Edit
+            </a>
+
+            <form
+                action="/code/<%= entry.id %>/delete"
+                method="POST"
+                style="display: inline;"
+            >
+                <button type="submit">Delete</button>
+            </form>
+
             <hr>
 
         </article>

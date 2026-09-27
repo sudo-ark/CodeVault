@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Code - CodeVault</title>
+</head>
+<body>
+
+    <h1>Edit Code Entry</h1>
+
+    <form action="/code/<%= entry.id %>/edit" method="POST">
+
+        <label>Title</label><br>
+        <input
+            type="text"
+            name="title"
+            value="<%= entry.title %>"
+            required
+        >
+
+        <br><br>
+
+        <label>Subject</label><br>
+        <input
+            type="text"
+            name="subject"
+            value="<%= entry.subject %>"
+            required
+        >
+
+        <br><br>
+
+        <label>Category</label><br>
+        <input
+            type="text"
+            name="category"
+            value="<%= entry.category %>"
+            required
+        >
+
+        <br><br>
+
+        <label>Language</label><br>
+        <input
+            type="text"
+            name="language"
+            value="<%= entry.language %>"
+            required
+        >
+
+        <br><br>
+
+        <label>Description</label><br>
+        <textarea
+            name="description"
+            rows="5"
+            cols="60"
+        ><%= entry.description || "" %></textarea>
+
+        <br><br>
+
+        <label>Code</label><br>
+        <textarea
+            name="code"
+            rows="15"
+            cols="80"
+        ><%= entry.code || "" %></textarea>
+
+        <br><br>
+
+        <label>Tags</label><br>
+        <input
+            type="text"
+            name="tags"
+            value="<%= entry.tags || "" %>"
+        >
+
+        <br><br>
+
+        <button type="submit">Update Code</button>
+
+    </form>
+
+    <br>
+
+    <a href="/code">Cancel</a>
+
+</body>
+</html>

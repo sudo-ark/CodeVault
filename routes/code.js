@@ -104,6 +104,7 @@ router.get("/new", (req, res) => {
     res.render("new-code");
 });
 
+// Add code
 router.post("/", (req, res) => {
     const {
         title,
@@ -134,6 +135,78 @@ router.post("/", (req, res) => {
         code || "",
         tags || ""
     );
+
+    res.redirect("/code");
+});
+
+// Show edit form
+router.get("/:id/edit", (req, res) => {
+    const entry = db
+        .prepare("SELECT * FROM code_archive WHERE id = ?")
+        .get(req.params.id);
+
+    if (!entry) {
+        return res.status(404).send("Code entry not found.");
+    }
+
+    res.render("edit-code", { entry });
+});
+
+// Update code
+router.post("/:id/edit", (req, res) => {
+    const {
+        title,
+        subject,
+        category,
+        language,
+        description,
+        code,
+        tags
+    } = req.body;
+
+    if (!title || !subject || !category || !language) {
+        return res
+            .status(400)
+            .send("Title, subject, category and language are required.");
+    }
+
+    const result = db.prepare(`
+        UPDATE code_archive
+        SET title = ?,
+            subject = ?,
+            category = ?,
+            language = ?,
+            description = ?,
+            code = ?,
+            tags = ?
+        WHERE id = ?
+    `).run(
+        title,
+        subject,
+        category,
+        language,
+        description || "",
+        code || "",
+        tags || "",
+        req.params.id
+    );
+
+    if (result.changes === 0) {
+        return res.status(404).send("Code entry not found.");
+    }
+
+    res.redirect("/code");
+});
+
+// Delete code
+router.post("/:id/delete", (req, res) => {
+    const result = db
+        .prepare("DELETE FROM code_archive WHERE id = ?")
+        .run(req.params.id);
+
+    if (result.changes === 0) {
+        return res.status(404).send("Code entry not found.");
+    }
 
     res.redirect("/code");
 });
