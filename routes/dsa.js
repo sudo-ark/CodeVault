@@ -3,9 +3,14 @@ const db = require("../database/db");
 
 const router = express.Router();
 
-// Display all DSA problems
+// Display DSA problems with search and filters
 router.get("/", (req, res) => {
-    const { search = "", topic = "", difficulty = "", status = "" } = req.query;
+    const {
+        search = "",
+        topic = "",
+        difficulty = "",
+        status = ""
+    } = req.query;
 
     let query = "SELECT * FROM dsa_problems WHERE 1=1";
     const params = [];
@@ -121,6 +126,84 @@ router.post("/", (req, res) => {
         time_complexity || "",
         space_complexity || ""
     );
+
+    res.redirect("/dsa");
+});
+
+// Show edit form
+router.get("/:id/edit", (req, res) => {
+    const problem = db
+        .prepare("SELECT * FROM dsa_problems WHERE id = ?")
+        .get(req.params.id);
+
+    if (!problem) {
+        return res.status(404).send("Problem not found.");
+    }
+
+    res.render("edit-dsa", { problem });
+});
+
+// Update a DSA problem
+router.post("/:id/edit", (req, res) => {
+    const {
+        title,
+        topic,
+        difficulty,
+        platform,
+        language,
+        approach,
+        solution,
+        time_complexity,
+        space_complexity
+    } = req.body;
+
+    if (!title || !topic || !difficulty) {
+        return res
+            .status(400)
+            .send("Title, topic and difficulty are required.");
+    }
+
+    const result = db.prepare(`
+        UPDATE dsa_problems
+        SET title = ?,
+            topic = ?,
+            difficulty = ?,
+            platform = ?,
+            language = ?,
+            approach = ?,
+            solution = ?,
+            time_complexity = ?,
+            space_complexity = ?
+        WHERE id = ?
+    `).run(
+        title,
+        topic,
+        difficulty,
+        platform || "",
+        language || "",
+        approach || "",
+        solution || "",
+        time_complexity || "",
+        space_complexity || "",
+        req.params.id
+    );
+
+    if (result.changes === 0) {
+        return res.status(404).send("Problem not found.");
+    }
+
+    res.redirect("/dsa");
+});
+
+// Delete a DSA problem
+router.post("/:id/delete", (req, res) => {
+    const result = db
+        .prepare("DELETE FROM dsa_problems WHERE id = ?")
+        .run(req.params.id);
+
+    if (result.changes === 0) {
+        return res.status(404).send("Problem not found.");
+    }
 
     res.redirect("/dsa");
 });

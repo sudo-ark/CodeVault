@@ -143,6 +143,18 @@
                 </button>
             </form>
 
+            <a href="/dsa/<%= problem.id %>/edit">
+            Edit
+        </a>
+
+        <form
+            action="/dsa/<%= problem.id %>/delete"
+            method="POST"
+            style="display: inline;"
+        >
+            <button type="submit">Delete</button>
+        </form>
+
             <hr>
 
         </article>
