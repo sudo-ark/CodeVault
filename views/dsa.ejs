@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DSA Tracker - CodeVault</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
+
+    <nav class="main-nav">
+        <a href="/" class="brand">CodeVault</a>
+        <a href="/">Dashboard</a>
+        <a href="/labs">Lab Manager</a>
+        <a href="/dsa">DSA Tracker</a>
+        <a href="/code">Code Archive</a>
+    </nav>
 
     <h1>DSA Tracker</h1>
 
@@ -78,7 +89,9 @@
     <hr>
 
     <% if (problems.length === 0) { %>
+
         <p>No DSA problems match your search or filters.</p>
+
     <% } %>
 
     <% problems.forEach(problem => { %>
@@ -144,16 +157,16 @@
             </form>
 
             <a href="/dsa/<%= problem.id %>/edit">
-            Edit
-        </a>
+                Edit
+            </a>
 
-        <form
-            action="/dsa/<%= problem.id %>/delete"
-            method="POST"
-            style="display: inline;"
-        >
-            <button type="submit">Delete</button>
-        </form>
+            <form
+                action="/dsa/<%= problem.id %>/delete"
+                method="POST"
+                style="display: inline;"
+            >
+                <button type="submit">Delete</button>
+            </form>
 
             <hr>
 

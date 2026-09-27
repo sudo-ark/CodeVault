@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit DSA Problem - CodeVault</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
+
+    <nav class="main-nav">
+        <a href="/" class="brand">CodeVault</a>
+        <a href="/">Dashboard</a>
+        <a href="/labs">Lab Manager</a>
+        <a href="/dsa">DSA Tracker</a>
+        <a href="/code">Code Archive</a>
+    </nav>
 
     <h1>Edit DSA Problem</h1>
 
@@ -67,12 +78,20 @@
         <br><br>
 
         <label>Approach</label><br>
-        <textarea name="approach" rows="5" cols="60"><%= problem.approach || "" %></textarea>
+        <textarea
+            name="approach"
+            rows="5"
+            cols="60"
+        ><%= problem.approach || "" %></textarea>
 
         <br><br>
 
         <label>Solution</label><br>
-        <textarea name="solution" rows="10" cols="60"><%= problem.solution || "" %></textarea>
+        <textarea
+            name="solution"
+            rows="10"
+            cols="60"
+        ><%= problem.solution || "" %></textarea>
 
         <br><br>
 

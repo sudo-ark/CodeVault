@@ -1,0 +1,1080 @@
+/* =========================
+   CodeVault Global Styles
+   ========================= */
+
+:root {
+    --text: #172033;
+    --muted: #526078;
+
+    --primary: #2563eb;
+    --primary-dark: #1d4ed8;
+
+    --danger: #dc2626;
+    --danger-dark: #b91c1c;
+
+    --success: #15803d;
+    --success-dark: #166534;
+
+    --radius: 16px;
+
+    --glass: rgba(255, 255, 255, 0.34);
+    --glass-light: rgba(255, 255, 255, 0.42);
+
+    --glass-border: rgba(255, 255, 255, 0.55);
+
+    --glass-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.20);
+}
+
+
+/* =========================
+   Global
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    line-height: 1.6;
+
+    /* Strong background */
+    background:
+        radial-gradient(
+            circle at 0% 10%,
+            rgba(37, 99, 235, 0.70),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 100% 5%,
+            rgba(217, 70, 239, 0.65),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 85% 65%,
+            rgba(124, 58, 237, 0.55),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 10% 90%,
+            rgba(6, 182, 212, 0.45),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #7da8f5 0%,
+            #9d8de8 38%,
+            #d18be8 68%,
+            #7ddbd0 100%
+        );
+
+    background-attachment: fixed;
+}
+
+
+/* =========================
+   Common Width
+   ========================= */
+
+main,
+body > h1,
+body > p,
+body > nav,
+body > hr,
+body > h2,
+body > section,
+body > article,
+body > form,
+body > footer {
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body > h1 {
+    margin-top: 40px;
+    margin-bottom: 4px;
+
+    font-size: 2.2rem;
+}
+
+body > p {
+    color: var(--muted);
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.25;
+}
+
+
+/* =========================
+   GLASS COMPONENTS
+   ========================= */
+
+.main-nav,
+section,
+article,
+body > form[method="POST"],
+body > form[action="/labs"][method="GET"],
+body > form[action="/dsa"][method="GET"],
+body > form[action="/code"][method="GET"] {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.40),
+            rgba(255, 255, 255, 0.22)
+        );
+
+    border:
+        1px solid var(--glass-border);
+
+    backdrop-filter:
+        blur(24px) saturate(160%);
+
+    -webkit-backdrop-filter:
+        blur(24px) saturate(160%);
+
+    box-shadow:
+        var(--glass-shadow);
+
+    position: relative;
+}
+
+
+/* =========================
+   Navigation
+   ========================= */
+
+.main-nav {
+    max-width: 1100px;
+
+    margin: 24px auto;
+    padding: 10px 14px;
+
+    border-radius: 17px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 6px;
+}
+
+.main-nav a {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 10px 16px;
+
+    color: #172033;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+    font-size: 0.95rem;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.main-nav a:hover {
+    background:
+        rgba(255, 255, 255, 0.24);
+
+    color: #1747a6;
+
+    text-decoration: none;
+
+    transform: translateY(-1px);
+}
+
+.main-nav .brand {
+    margin-right: auto;
+
+    padding: 10px 14px;
+
+    color: #172033;
+
+    font-size: 1.2rem;
+    font-weight: 800;
+}
+
+.main-nav .brand:hover {
+    background:
+        rgba(255, 255, 255, 0.20);
+
+    color: #172033;
+}
+
+
+/* =========================
+   GLOSSY ADD BUTTONS
+   Add Experiment / Add DSA /
+   Add Code
+   ========================= */
+
+body > a {
+    display: block;
+
+    width: fit-content;
+
+    margin: 18px auto;
+    padding: 11px 20px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(74, 120, 190, 0.68),
+            rgba(37, 78, 150, 0.62)
+        );
+
+    color: white;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.48);
+
+    border-radius: 11px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 7px 18px rgba(37, 63, 110, 0.20),
+        inset 0 1px 1px rgba(255, 255, 255, 0.40),
+        inset 0 -2px 5px rgba(20, 40, 80, 0.18);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+body > a:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(91, 135, 200, 0.74),
+            rgba(43, 86, 160, 0.68)
+        );
+
+    color: white;
+
+    text-decoration: none;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(37, 63, 110, 0.25),
+        inset 0 1px 2px rgba(255, 255, 255, 0.48);
+}
+
+
+/* =========================
+   Dividers
+   ========================= */
+
+hr {
+    border: 0;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.35);
+
+    margin-top: 28px;
+    margin-bottom: 28px;
+}
+
+
+/* =========================
+   Dashboard Cards
+   ========================= */
+
+section {
+    border-radius: var(--radius);
+
+    padding: 22px;
+
+    margin-top: 18px;
+}
+
+section h3 {
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 0.95rem;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.04em;
+}
+
+section p {
+    margin: 8px 0 0;
+
+    font-size: 2rem;
+
+    font-weight: 700;
+
+    color: var(--primary);
+}
+
+
+/* =========================
+   Forms
+   ========================= */
+
+form {
+    margin-top: 16px;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    max-width: 100%;
+
+    padding: 11px 13px;
+
+    margin-top: 6px;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.48);
+
+    border-radius: 10px;
+
+    background:
+        rgba(255, 255, 255, 0.22);
+
+    color: var(--text);
+
+    font: inherit;
+
+    backdrop-filter:
+        blur(14px);
+
+    -webkit-backdrop-filter:
+        blur(14px);
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+input::placeholder {
+    color: rgba(23, 32, 51, 0.58);
+}
+
+input:hover,
+select:hover,
+textarea:hover {
+    background:
+        rgba(255, 255, 255, 0.30);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+
+    background:
+        rgba(255, 255, 255, 0.38);
+
+    border-color:
+        rgba(37, 99, 235, 0.60);
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+textarea {
+    resize: vertical;
+}
+
+
+/* =========================
+   Search / Filter
+   ========================= */
+
+form[action="/labs"][method="GET"],
+form[action="/dsa"][method="GET"],
+form[action="/code"][method="GET"] {
+    display: grid;
+
+    gap: 10px;
+
+    align-items: center;
+
+    padding: 18px 22px;
+
+    border-radius: var(--radius);
+
+    margin-top: 18px;
+}
+
+form[action="/labs"][method="GET"] {
+    grid-template-columns:
+        2fr 1fr 1fr auto auto;
+}
+
+form[action="/dsa"][method="GET"],
+form[action="/code"][method="GET"] {
+    grid-template-columns:
+        2fr 1fr 1fr 1fr auto auto;
+}
+
+
+/* =========================
+   GLOSSY SEARCH / FILTER
+   ========================= */
+
+form[action="/labs"][method="GET"] button,
+form[action="/dsa"][method="GET"] button,
+form[action="/code"][method="GET"] button {
+    width: max-content;
+
+    margin: 0;
+
+    padding: 10px 18px;
+
+    white-space: nowrap;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(74, 120, 190, 0.68),
+            rgba(37, 78, 150, 0.62)
+        );
+
+    color: white;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.48);
+
+    border-radius: 10px;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 7px 18px rgba(37, 63, 110, 0.20),
+        inset 0 1px 2px rgba(255, 255, 255, 0.40),
+        inset 0 -3px 6px rgba(20, 40, 80, 0.18);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+form[action="/labs"][method="GET"] button:hover,
+form[action="/dsa"][method="GET"] button:hover,
+form[action="/code"][method="GET"] button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(91, 135, 200, 0.74),
+            rgba(43, 86, 160, 0.68)
+        );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(37, 63, 110, 0.25),
+        inset 0 1px 2px rgba(255, 255, 255, 0.48);
+}
+
+
+/* =========================
+   Clear
+   ========================= */
+
+form[action="/labs"][method="GET"] a,
+form[action="/dsa"][method="GET"] a,
+form[action="/code"][method="GET"] a {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: max-content;
+
+    padding: 10px 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.44),
+            rgba(255, 255, 255, 0.20)
+        );
+
+    color: #334155;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.52);
+
+    border-radius: 10px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    white-space: nowrap;
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    box-shadow:
+        0 6px 16px rgba(15, 23, 42, 0.09),
+        inset 0 1px 2px rgba(255, 255, 255, 0.58);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+form[action="/labs"][method="GET"] a:hover,
+form[action="/dsa"][method="GET"] a:hover,
+form[action="/code"][method="GET"] a:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.56),
+            rgba(255, 255, 255, 0.26)
+        );
+
+    color: #172033;
+
+    text-decoration: none;
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 9px 20px rgba(15, 23, 42, 0.12),
+        inset 0 1px 2px rgba(255, 255, 255, 0.70);
+}
+
+
+/* =========================
+   Add / Edit Forms
+   ========================= */
+
+body > form[method="POST"] {
+    max-width: 800px;
+
+    margin: 25px auto;
+
+    padding: 30px;
+
+    border-radius: var(--radius);
+}
+
+body > form[method="POST"] label {
+    display: block;
+
+    margin-top: 18px;
+    margin-bottom: 6px;
+
+    font-weight: 600;
+}
+
+body > form[method="POST"] input,
+body > form[method="POST"] textarea,
+body > form[method="POST"] select {
+    width: 100%;
+}
+
+body > form[method="POST"] button {
+    margin-top: 20px;
+}
+
+
+/* =========================
+   General Buttons
+   ========================= */
+
+button {
+    border: 0;
+
+    border-radius: 9px;
+
+    padding: 9px 15px;
+
+    font: inherit;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================
+   Content Cards
+   ========================= */
+
+article {
+    border-radius: var(--radius);
+
+    padding: 28px;
+
+    margin: 18px auto;
+
+    max-width: 1100px;
+
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+article:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.46),
+            rgba(255, 255, 255, 0.26)
+        );
+
+    box-shadow:
+        0 20px 48px rgba(15, 23, 42, 0.22);
+}
+
+article h2 {
+    margin-top: 0;
+}
+
+article p {
+    margin: 8px 0;
+}
+
+
+/* =================================================
+   ACTION BUTTONS
+   Mark Completed / Edit / Delete
+
+   All three:
+   - same height
+   - same vertical alignment
+   - glossy glass appearance
+   ================================================= */
+
+article form[action*="/complete"],
+article a[href*="/edit"],
+article form[action*="/delete"] {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    height: 52px;
+
+    margin-top: 18px;
+
+    vertical-align: middle;
+}
+
+
+/* =========================
+   Mark as Completed
+   ========================= */
+
+article form[action*="/complete"] {
+    margin-right: 14px;
+}
+
+article form[action*="/complete"] button {
+    height: 52px;
+
+    box-sizing: border-box;
+
+    min-width: 194px;
+
+    padding: 0 18px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(63, 135, 88, 0.72),
+            rgba(30, 100, 60, 0.68)
+        );
+
+    color: white;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.44);
+
+    border-radius: 11px;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 7px 18px rgba(30, 80, 50, 0.20),
+        inset 0 1px 2px rgba(255, 255, 255, 0.42),
+        inset 0 -3px 6px rgba(20, 60, 35, 0.20);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+article form[action*="/complete"] button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(76, 150, 101, 0.78),
+            rgba(30, 105, 62, 0.74)
+        );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(30, 80, 50, 0.25),
+        inset 0 1px 2px rgba(255, 255, 255, 0.50);
+}
+
+
+/* =========================
+   Edit
+   ========================= */
+
+article a[href*="/edit"] {
+    height: 52px;
+
+    box-sizing: border-box;
+
+    min-width: 82px;
+
+    padding: 0 18px;
+
+    margin-right: 14px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(91, 137, 195, 0.58),
+            rgba(43, 82, 150, 0.52)
+        );
+
+    color: #173b78;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.50);
+
+    border-radius: 11px;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 7px 18px rgba(37, 63, 110, 0.16),
+        inset 0 1px 2px rgba(255, 255, 255, 0.48),
+        inset 0 -3px 6px rgba(25, 55, 105, 0.12);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+article a[href*="/edit"]:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(105, 149, 205, 0.66),
+            rgba(45, 88, 160, 0.60)
+        );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(37, 63, 110, 0.22),
+        inset 0 1px 2px rgba(255, 255, 255, 0.56);
+}
+
+
+/* =========================
+   Delete
+   ========================= */
+
+article form[action*="/delete"] {
+    margin-right: 0;
+
+    /*
+       Keeps alignment even if the HTML
+       still contains style="display: inline;"
+    */
+    display: inline-flex !important;
+}
+
+article form[action*="/delete"] button {
+    height: 52px;
+
+    box-sizing: border-box;
+
+    min-width: 108px;
+
+    padding: 0 18px;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(180, 76, 76, 0.72),
+            rgba(155, 38, 38, 0.68)
+        );
+
+    color: white;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.44);
+
+    border-radius: 11px;
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 7px 18px rgba(110, 35, 35, 0.18),
+        inset 0 1px 2px rgba(255, 255, 255, 0.42),
+        inset 0 -3px 6px rgba(90, 25, 25, 0.20);
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+article form[action*="/delete"] button:hover {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(195, 88, 88, 0.78),
+            rgba(160, 42, 42, 0.74)
+        );
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 22px rgba(110, 35, 35, 0.24),
+        inset 0 1px 2px rgba(255, 255, 255, 0.50);
+}
+
+
+/* =========================
+   Code Blocks
+   ========================= */
+
+pre {
+    overflow-x: auto;
+
+    padding: 16px;
+
+    border-radius: 10px;
+
+    background:
+        rgba(10, 20, 42, 0.94);
+
+    color: #e5e7eb;
+
+    border:
+        1px solid rgba(255, 255, 255, 0.12);
+
+    font-family:
+        "Cascadia Code",
+        "Fira Code",
+        Consolas,
+        monospace;
+
+    font-size: 0.9rem;
+
+    line-height: 1.5;
+
+    box-shadow:
+        0 10px 24px rgba(15, 23, 42, 0.22);
+}
+
+
+/* =========================
+   Status
+   ========================= */
+
+article p strong {
+    color: var(--text);
+}
+
+
+/* =========================
+   Lists
+   ========================= */
+
+ul {
+    max-width: 1100px;
+
+    margin: 0 auto 20px;
+
+    padding-left: 20px;
+}
+
+li {
+    margin: 8px 0;
+}
+
+
+/* =========================
+   Footer
+   ========================= */
+
+footer {
+    max-width: 1100px;
+
+    margin: 40px auto 25px;
+
+    padding: 16px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-size: 0.85rem;
+
+    border-top:
+        1px solid rgba(255, 255, 255, 0.35);
+}
+
+
+/* =========================
+   Dashboard Stats Grid
+   ========================= */
+
+.stats-grid {
+    max-width: 1100px;
+
+    margin: 0 auto;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.stats-grid section {
+    margin: 0;
+}
+
+
+/* =========================
+   Responsive
+   ========================= */
+
+@media (max-width: 800px) {
+
+    form[action="/labs"][method="GET"],
+    form[action="/dsa"][method="GET"],
+    form[action="/code"][method="GET"] {
+        grid-template-columns: 1fr;
+    }
+
+    body > h1 {
+        margin-left: 18px;
+        margin-right: 18px;
+    }
+
+    body > p,
+    body > nav,
+    body > h2,
+    body > section,
+    body > article,
+    body > form {
+        margin-left: 18px;
+        margin-right: 18px;
+    }
+
+    body > form[method="POST"] {
+        margin-left: 18px;
+        margin-right: 18px;
+    }
+
+    article form[action*="/complete"],
+    article a[href*="/edit"],
+    article form[action*="/delete"] {
+        margin-top: 10px;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .main-nav {
+        margin-left: 18px;
+        margin-right: 18px;
+
+        flex-wrap: wrap;
+
+        gap: 8px;
+    }
+
+    .main-nav .brand {
+        width: 100%;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+
+        margin-left: 18px;
+        margin-right: 18px;
+    }
+}
