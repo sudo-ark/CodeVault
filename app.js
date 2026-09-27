@@ -1,10 +1,12 @@
 const express = require("express");
+const commit = (process.env.RENDER_GIT_COMMIT || "local").slice(0, 7);
 const db = require("./database/db");
 const labsRouter = require("./routes/labs");
 const codeRouter = require("./routes/code");
+const apiRouter = require("./routes/api");
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+app.locals.commit = commit;
 
 app.set("view engine", "ejs");
 
@@ -14,15 +16,61 @@ app.use(express.static("public"));
 
 app.use("/labs", labsRouter);
 app.use("/code", codeRouter);
+app.use("/api", apiRouter);
 
 app.get("/", (req, res) => {
-    res.render("index");
+    const labCount = db
+        .prepare("SELECT COUNT(*) AS count FROM labs")
+        .get().count;
+
+    const dsaCount = db
+        .prepare("SELECT COUNT(*) AS count FROM dsa_problems")
+        .get().count;
+
+    const codeCount = db
+        .prepare("SELECT COUNT(*) AS count FROM code_archive")
+        .get().count;
+
+    const recentLabs = db
+        .prepare(`
+            SELECT *
+            FROM labs
+            ORDER BY created_at DESC
+            LIMIT 5
+        `)
+        .all();
+
+    const recentDsa = db
+        .prepare(`
+            SELECT *
+            FROM dsa_problems
+            ORDER BY created_at DESC
+            LIMIT 5
+        `)
+        .all();
+
+    const recentCode = db
+        .prepare(`
+            SELECT *
+            FROM code_archive
+            ORDER BY created_at DESC
+            LIMIT 5
+        `)
+        .all();
+
+    res.render("index", {
+        labCount,
+        dsaCount,
+        codeCount,
+        recentLabs,
+        recentDsa,
+        recentCode,
+        commit
+    });
 });
 
 app.get("/health", (req, res) => {
     res.json({ status: "ok" });
 });
 
-app.listen(PORT, () => {
-    console.log(`CodeVault running on port ${PORT}`);
-});
+module.exports = app;
