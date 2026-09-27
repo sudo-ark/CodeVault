@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab Experiments - CodeVault</title>
+</head>
+<body>
+
+    <h1>Lab Experiments</h1>
+
+    <a href="/labs/new">+ Add Experiment</a>
+
+    <hr>
+
+    <% if (labs.length === 0) { %>
+        <p>No experiments added yet.</p>
+    <% } %>
+
+    <% labs.forEach(lab => { %>
+        <article>
+            <h2>
+                Experiment <%= lab.experiment_no %>: <%= lab.title %>
+            </h2>
+
+            <p><strong>Subject:</strong> <%= lab.subject %></p>
+
+            <p><strong>Aim:</strong> <%= lab.aim %></p>
+
+            <% if (lab.theory) { %>
+                <p><strong>Theory:</strong> <%= lab.theory %></p>
+            <% } %>
+
+            <% if (lab.code) { %>
+                <h3>Code</h3>
+                <pre><%= lab.code %></pre>
+            <% } %>
+
+            <% if (lab.output) { %>
+                <p><strong>Output:</strong> <%= lab.output %></p>
+            <% } %>
+
+            <hr>
+        </article>
+    <% }); %>
+
+</body>
+</html>

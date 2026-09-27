@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Lab Experiment - CodeVault</title>
+</head>
+<body>
+
+    <h1>Add Lab Experiment</h1>
+
+    <form action="/labs" method="POST">
+
+        <label for="experiment_no">Experiment Number</label>
+        <input
+            type="number"
+            id="experiment_no"
+            name="experiment_no"
+            required
+        >
+
+        <br><br>
+
+        <label for="title">Experiment Title</label>
+        <input
+            type="text"
+            id="title"
+            name="title"
+            required
+        >
+
+        <br><br>
+
+        <label for="subject">Subject</label>
+        <input
+            type="text"
+            id="subject"
+            name="subject"
+            required
+        >
+
+        <br><br>
+
+        <label for="aim">Aim</label>
+        <textarea
+            id="aim"
+            name="aim"
+            required
+        ></textarea>
+
+        <br><br>
+
+        <label for="theory">Theory / Notes</label>
+        <textarea
+            id="theory"
+            name="theory"
+        ></textarea>
+
+        <br><br>
+
+        <label for="code">Code</label>
+        <textarea
+            id="code"
+            name="code"
+            rows="10"
+        ></textarea>
+
+        <br><br>
+
+        <label for="output">Output</label>
+        <textarea
+            id="output"
+            name="output"
+        ></textarea>
+
+        <br><br>
+
+        <button type="submit">Save Experiment</button>
+
+    </form>
+
+    <br>
+
+    <a href="/labs">← Back to Experiments</a>
+
+</body>
+</html>
