@@ -13,8 +13,72 @@
 
     <hr>
 
+    <!-- Search and Filters -->
+    <form action="/dsa" method="GET">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search problems..."
+            value="<%= filters.search %>"
+        >
+
+        <select name="topic">
+            <option value="">All Topics</option>
+
+            <% topics.forEach(item => { %>
+                <option
+                    value="<%= item.topic %>"
+                    <%= filters.topic === item.topic ? "selected" : "" %>
+                >
+                    <%= item.topic %>
+                </option>
+            <% }); %>
+
+        </select>
+
+        <select name="difficulty">
+            <option value="">All Difficulties</option>
+
+            <% difficulties.forEach(item => { %>
+                <option
+                    value="<%= item.difficulty %>"
+                    <%= filters.difficulty === item.difficulty ? "selected" : "" %>
+                >
+                    <%= item.difficulty %>
+                </option>
+            <% }); %>
+
+        </select>
+
+        <select name="status">
+            <option value="">All Status</option>
+
+            <option
+                value="solved"
+                <%= filters.status === "solved" ? "selected" : "" %>
+            >
+                Solved
+            </option>
+
+            <option
+                value="unsolved"
+                <%= filters.status === "unsolved" ? "selected" : "" %>
+            >
+                Unsolved
+            </option>
+        </select>
+
+        <button type="submit">Search / Filter</button>
+
+        <a href="/dsa">Clear</a>
+
+    </form>
+
+    <hr>
+
     <% if (problems.length === 0) { %>
-        <p>No DSA problems added yet.</p>
+        <p>No DSA problems match your search or filters.</p>
     <% } %>
 
     <% problems.forEach(problem => { %>

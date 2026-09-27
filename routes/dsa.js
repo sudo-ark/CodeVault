@@ -5,11 +5,70 @@ const router = express.Router();
 
 // Display all DSA problems
 router.get("/", (req, res) => {
-    const problems = db
-        .prepare("SELECT * FROM dsa_problems ORDER BY created_at DESC")
+    const { search = "", topic = "", difficulty = "", status = "" } = req.query;
+
+    let query = "SELECT * FROM dsa_problems WHERE 1=1";
+    const params = [];
+
+    if (search.trim()) {
+        query += `
+            AND (
+                title LIKE ?
+                OR topic LIKE ?
+                OR platform LIKE ?
+                OR language LIKE ?
+            )
+        `;
+
+        const searchTerm = `%${search.trim()}%`;
+
+        params.push(
+            searchTerm,
+            searchTerm,
+            searchTerm,
+            searchTerm
+        );
+    }
+
+    if (topic) {
+        query += " AND topic = ?";
+        params.push(topic);
+    }
+
+    if (difficulty) {
+        query += " AND difficulty = ?";
+        params.push(difficulty);
+    }
+
+    if (status === "solved") {
+        query += " AND solved = 1";
+    } else if (status === "unsolved") {
+        query += " AND solved = 0";
+    }
+
+    query += " ORDER BY created_at DESC";
+
+    const problems = db.prepare(query).all(...params);
+
+    const topics = db
+        .prepare("SELECT DISTINCT topic FROM dsa_problems ORDER BY topic")
         .all();
 
-    res.render("dsa", { problems });
+    const difficulties = db
+        .prepare("SELECT DISTINCT difficulty FROM dsa_problems ORDER BY difficulty")
+        .all();
+
+    res.render("dsa", {
+        problems,
+        topics,
+        difficulties,
+        filters: {
+            search,
+            topic,
+            difficulty,
+            status
+        }
+    });
 });
 
 // Show add problem form
