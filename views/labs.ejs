@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab Experiments - CodeVault</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
+
 <body>
+
+    <nav class="main-nav">
+        <a href="/" class="brand">CodeVault</a>
+        <a href="/">Dashboard</a>
+        <a href="/labs">Lab Manager</a>
+        <a href="/dsa">DSA Tracker</a>
+        <a href="/code">Code Archive</a>
+    </nav>
 
     <h1>Lab Experiments</h1>
 
@@ -13,22 +24,81 @@
 
     <hr>
 
+    <form action="/labs" method="GET">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search experiments..."
+            value="<%= filters.search %>"
+        >
+
+        <select name="subject">
+            <option value="">All Subjects</option>
+
+            <% subjects.forEach(item => { %>
+                <option
+                    value="<%= item.subject %>"
+                    <%= filters.subject === item.subject ? "selected" : "" %>
+                >
+                    <%= item.subject %>
+                </option>
+            <% }); %>
+        </select>
+
+        <select name="status">
+            <option value="">All Status</option>
+
+            <option
+                value="completed"
+                <%= filters.status === "completed" ? "selected" : "" %>
+            >
+                Completed
+            </option>
+
+            <option
+                value="pending"
+                <%= filters.status === "pending" ? "selected" : "" %>
+            >
+                Pending
+            </option>
+        </select>
+
+        <button type="submit">Search / Filter</button>
+
+        <a href="/labs">Clear</a>
+
+    </form>
+
+    <hr>
+
     <% if (labs.length === 0) { %>
-        <p>No experiments added yet.</p>
+        <p>No experiments match your search or filters.</p>
     <% } %>
 
     <% labs.forEach(lab => { %>
+
         <article>
+
             <h2>
                 Experiment <%= lab.experiment_no %>: <%= lab.title %>
             </h2>
 
-            <p><strong>Subject:</strong> <%= lab.subject %></p>
+            <p>
+                <strong>Subject:</strong>
+                <%= lab.subject %>
+            </p>
 
-            <p><strong>Aim:</strong> <%= lab.aim %></p>
+            <p>
+                <strong>Aim:</strong>
+                <%= lab.aim %>
+            </p>
 
             <% if (lab.theory) { %>
-                <p><strong>Theory:</strong> <%= lab.theory %></p>
+                <p>
+                    <strong>Theory:</strong>
+                    <%= lab.theory %>
+                </p>
             <% } %>
 
             <% if (lab.code) { %>
@@ -37,17 +107,25 @@
             <% } %>
 
             <% if (lab.output) { %>
-                <p><strong>Output:</strong> <%= lab.output %></p>
+                <p>
+                    <strong>Output:</strong>
+                    <%= lab.output %>
+                </p>
             <% } %>
-            
+
             <p>
                 <strong>Status:</strong>
                 <%= lab.completed ? "Completed" : "Pending" %>
             </p>
 
-            <form action="/labs/<%= lab.id %>/complete" method="POST">
+            <form
+                action="/labs/<%= lab.id %>/complete"
+                method="POST"
+            >
                 <button type="submit">
-                    <%= lab.completed ? "Mark as Pending" : "Mark as Completed" %>
+                    <%= lab.completed
+                        ? "Mark as Pending"
+                        : "Mark as Completed" %>
                 </button>
             </form>
 
@@ -64,7 +142,9 @@
             </form>
 
             <hr>
+
         </article>
+
     <% }); %>
 
 </body>

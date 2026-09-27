@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Tracker - CodeVault</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+
+    <nav class="main-nav">
+        <a href="/" class="brand">CodeVault</a>
+        <a href="/">Dashboard</a>
+        <a href="/labs">Lab Manager</a>
+        <a href="/dsa">DSA Tracker</a>
+        <a href="/code">Code Archive</a>
+    </nav>
+
+    <h1>DSA Tracker</h1>
+
+    <a href="/dsa/new">+ Add DSA Problem</a>
+
+    <hr>
+
+    <!-- Search and Filters -->
+    <form action="/dsa" method="GET">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search problems..."
+            value="<%= filters.search %>"
+        >
+
+        <select name="topic">
+            <option value="">All Topics</option>
+
+            <% topics.forEach(item => { %>
+                <option
+                    value="<%= item.topic %>"
+                    <%= filters.topic === item.topic ? "selected" : "" %>
+                >
+                    <%= item.topic %>
+                </option>
+            <% }); %>
+
+        </select>
+
+        <select name="difficulty">
+            <option value="">All Difficulties</option>
+
+            <% difficulties.forEach(item => { %>
+                <option
+                    value="<%= item.difficulty %>"
+                    <%= filters.difficulty === item.difficulty ? "selected" : "" %>
+                >
+                    <%= item.difficulty %>
+                </option>
+            <% }); %>
+
+        </select>
+
+        <select name="status">
+            <option value="">All Status</option>
+
+            <option
+                value="solved"
+                <%= filters.status === "solved" ? "selected" : "" %>
+            >
+                Solved
+            </option>
+
+            <option
+                value="unsolved"
+                <%= filters.status === "unsolved" ? "selected" : "" %>
+            >
+                Unsolved
+            </option>
+        </select>
+
+        <button type="submit">Search / Filter</button>
+
+        <a href="/dsa">Clear</a>
+
+    </form>
+
+    <hr>
+
+    <% if (problems.length === 0) { %>
+
+        <p>No DSA problems match your search or filters.</p>
+
+    <% } %>
+
+    <% problems.forEach(problem => { %>
+
+        <article>
+
+            <h2><%= problem.title %></h2>
+
+            <p>
+                <strong>Topic:</strong>
+                <%= problem.topic %>
+            </p>
+
+            <p>
+                <strong>Difficulty:</strong>
+                <%= problem.difficulty %>
+            </p>
+
+            <p>
+                <strong>Platform:</strong>
+                <%= problem.platform || "Not specified" %>
+            </p>
+
+            <p>
+                <strong>Language:</strong>
+                <%= problem.language || "Not specified" %>
+            </p>
+
+            <% if (problem.approach) { %>
+                <p>
+                    <strong>Approach:</strong>
+                    <%= problem.approach %>
+                </p>
+            <% } %>
+
+            <% if (problem.solution) { %>
+                <h3>Solution</h3>
+                <pre><%= problem.solution %></pre>
+            <% } %>
+
+            <p>
+                <strong>Time:</strong>
+                <%= problem.time_complexity || "Not specified" %>
+            </p>
+
+            <p>
+                <strong>Space:</strong>
+                <%= problem.space_complexity || "Not specified" %>
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                <%= problem.solved ? "Solved" : "Unsolved" %>
+            </p>
+
+            <form
+                action="/dsa/<%= problem.id %>/complete"
+                method="POST"
+            >
+                <button type="submit">
+                    <%= problem.solved ? "Mark as Unsolved" : "Mark as Solved" %>
+                </button>
+            </form>
+
+            <a href="/dsa/<%= problem.id %>/edit">
+                Edit
+            </a>
+
+            <form
+                action="/dsa/<%= problem.id %>/delete"
+                method="POST"
+                style="display: inline;"
+            >
+                <button type="submit">Delete</button>
+            </form>
+
+            <hr>
+
+        </article>
+
+    <% }); %>
+
+</body>
+</html>

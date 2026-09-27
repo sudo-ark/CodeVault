@@ -4,17 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CodeVault</title>
+    <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+
     <h1>CodeVault</h1>
-    <p>Your academic code, lab work and DSA management system.</p>
+
+    <p>
+        Academic Code, Lab & DSA Management System
+    </p>
+
+    <nav class="main-nav">
+        <a href="/" class="brand">CodeVault</a>
+        <a href="/">Dashboard</a>
+        <a href="/labs">Lab Manager</a>
+        <a href="/dsa">DSA Tracker</a>
+        <a href="/code">Code Archive</a>
+    </nav>
+
+    <hr>
 
     <h2>Dashboard</h2>
 
-    <ul>
-        <li>Lab Experiments</li>
-        <li>DSA Problems</li>
-        <li>Code & Assignments</li>
-    </ul>
+    <div class="stats-grid">
+
+        <section>
+            <h3>Lab Experiments</h3>
+            <p><%= labCount %></p>
+        </section>
+
+        <section>
+            <h3>DSA Problems</h3>
+            <p><%= dsaCount %></p>
+        </section>
+
+        <section>
+            <h3>Code Entries</h3>
+            <p><%= codeCount %></p>
+        </section>
+
+    </div>
+
+    <hr>
+
+    <h2>Recent Lab Experiments</h2>
+
+    <% if (recentLabs.length === 0) { %>
+        <p>No lab experiments yet.</p>
+    <% } else { %>
+
+        <ul>
+            <% recentLabs.forEach(lab => { %>
+                <li>
+                    Experiment <%= lab.experiment_no %> —
+                    <%= lab.title %>
+                    (<%= lab.subject %>)
+                </li>
+            <% }); %>
+        </ul>
+
+    <% } %>
+
+    <h2>Recent DSA Problems</h2>
+
+    <% if (recentDsa.length === 0) { %>
+        <p>No DSA problems yet.</p>
+    <% } else { %>
+
+        <ul>
+            <% recentDsa.forEach(problem => { %>
+                <li>
+                    <%= problem.title %> —
+                    <%= problem.topic %>
+                    (<%= problem.difficulty %>)
+                </li>
+            <% }); %>
+        </ul>
+
+    <% } %>
+
+    <h2>Recent Code</h2>
+
+    <% if (recentCode.length === 0) { %>
+        <p>No code entries yet.</p>
+    <% } else { %>
+
+        <ul>
+            <% recentCode.forEach(entry => { %>
+                <li>
+                    <%= entry.title %> —
+                    <%= entry.subject %>
+                    (<%= entry.language %>)
+                </li>
+            <% }); %>
+        </ul>
+
+    <% } %>
+
+    <footer>
+    Running commit: <%= commit %>
+    </footer>
+
 </body>
+
 </html>
+
