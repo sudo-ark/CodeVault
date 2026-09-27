@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Tracker - CodeVault</title>
+</head>
+<body>
+
+    <h1>DSA Tracker</h1>
+
+    <a href="/dsa/new">+ Add DSA Problem</a>
+
+    <hr>
+
+    <% if (problems.length === 0) { %>
+        <p>No DSA problems added yet.</p>
+    <% } %>
+
+    <% problems.forEach(problem => { %>
+
+        <article>
+
+            <h2><%= problem.title %></h2>
+
+            <p>
+                <strong>Topic:</strong>
+                <%= problem.topic %>
+            </p>
+
+            <p>
+                <strong>Difficulty:</strong>
+                <%= problem.difficulty %>
+            </p>
+
+            <p>
+                <strong>Platform:</strong>
+                <%= problem.platform || "Not specified" %>
+            </p>
+
+            <p>
+                <strong>Language:</strong>
+                <%= problem.language || "Not specified" %>
+            </p>
+
+            <% if (problem.approach) { %>
+                <p>
+                    <strong>Approach:</strong>
+                    <%= problem.approach %>
+                </p>
+            <% } %>
+
+            <% if (problem.solution) { %>
+                <h3>Solution</h3>
+                <pre><%= problem.solution %></pre>
+            <% } %>
+
+            <p>
+                <strong>Time:</strong>
+                <%= problem.time_complexity || "Not specified" %>
+            </p>
+
+            <p>
+                <strong>Space:</strong>
+                <%= problem.space_complexity || "Not specified" %>
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                <%= problem.solved ? "Solved" : "Unsolved" %>
+            </p>
+
+            <form
+                action="/dsa/<%= problem.id %>/complete"
+                method="POST"
+            >
+                <button type="submit">
+                    <%= problem.solved ? "Mark as Unsolved" : "Mark as Solved" %>
+                </button>
+            </form>
+
+            <hr>
+
+        </article>
+
+    <% }); %>
+
+</body>
+</html>

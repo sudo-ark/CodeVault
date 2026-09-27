@@ -1,9 +1,11 @@
 const express = require("express");
 const commit = (process.env.RENDER_GIT_COMMIT || "local").slice(0, 7);
 const db = require("./database/db");
+
 const labsRouter = require("./routes/labs");
 const codeRouter = require("./routes/code");
 const apiRouter = require("./routes/api");
+const dsaRouter = require("./routes/dsa");
 
 const app = express();
 app.locals.commit = commit;
@@ -17,6 +19,7 @@ app.use(express.static("public"));
 app.use("/labs", labsRouter);
 app.use("/code", codeRouter);
 app.use("/api", apiRouter);
+app.use("/dsa", dsaRouter);
 
 app.get("/", (req, res) => {
     const labCount = db
