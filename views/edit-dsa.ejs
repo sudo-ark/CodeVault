@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit DSA Problem - CodeVault</title>
+</head>
+<body>
+
+    <h1>Edit DSA Problem</h1>
+
+    <form action="/dsa/<%= problem.id %>/edit" method="POST">
+
+        <label>Title</label><br>
+        <input
+            type="text"
+            name="title"
+            value="<%= problem.title %>"
+            required
+        >
+
+        <br><br>
+
+        <label>Topic</label><br>
+        <input
+            type="text"
+            name="topic"
+            value="<%= problem.topic %>"
+            required
+        >
+
+        <br><br>
+
+        <label>Difficulty</label><br>
+        <select name="difficulty" required>
+            <option value="Easy" <%= problem.difficulty === "Easy" ? "selected" : "" %>>
+                Easy
+            </option>
+
+            <option value="Medium" <%= problem.difficulty === "Medium" ? "selected" : "" %>>
+                Medium
+            </option>
+
+            <option value="Hard" <%= problem.difficulty === "Hard" ? "selected" : "" %>>
+                Hard
+            </option>
+        </select>
+
+        <br><br>
+
+        <label>Platform</label><br>
+        <input
+            type="text"
+            name="platform"
+            value="<%= problem.platform || "" %>"
+        >
+
+        <br><br>
+
+        <label>Language</label><br>
+        <input
+            type="text"
+            name="language"
+            value="<%= problem.language || "" %>"
+        >
+
+        <br><br>
+
+        <label>Approach</label><br>
+        <textarea name="approach" rows="5" cols="60"><%= problem.approach || "" %></textarea>
+
+        <br><br>
+
+        <label>Solution</label><br>
+        <textarea name="solution" rows="10" cols="60"><%= problem.solution || "" %></textarea>
+
+        <br><br>
+
+        <label>Time Complexity</label><br>
+        <input
+            type="text"
+            name="time_complexity"
+            value="<%= problem.time_complexity || "" %>"
+        >
+
+        <br><br>
+
+        <label>Space Complexity</label><br>
+        <input
+            type="text"
+            name="space_complexity"
+            value="<%= problem.space_complexity || "" %>"
+        >
+
+        <br><br>
+
+        <button type="submit">Update Problem</button>
+
+    </form>
+
+    <br>
+
+    <a href="/dsa">Cancel</a>
+
+</body>
+</html>
