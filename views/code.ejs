@@ -13,8 +13,65 @@
 
     <hr>
 
+    <!-- Search and Filters -->
+    <form action="/code" method="GET">
+
+        <input
+            type="text"
+            name="search"
+            placeholder="Search code..."
+            value="<%= filters.search %>"
+        >
+
+        <select name="subject">
+            <option value="">All Subjects</option>
+
+            <% subjects.forEach(item => { %>
+                <option
+                    value="<%= item.subject %>"
+                    <%= filters.subject === item.subject ? "selected" : "" %>
+                >
+                    <%= item.subject %>
+                </option>
+            <% }); %>
+        </select>
+
+        <select name="category">
+            <option value="">All Categories</option>
+
+            <% categories.forEach(item => { %>
+                <option
+                    value="<%= item.category %>"
+                    <%= filters.category === item.category ? "selected" : "" %>
+                >
+                    <%= item.category %>
+                </option>
+            <% }); %>
+        </select>
+
+        <select name="language">
+            <option value="">All Languages</option>
+
+            <% languages.forEach(item => { %>
+                <option
+                    value="<%= item.language %>"
+                    <%= filters.language === item.language ? "selected" : "" %>
+                >
+                    <%= item.language %>
+                </option>
+            <% }); %>
+        </select>
+
+        <button type="submit">Search / Filter</button>
+
+        <a href="/code">Clear</a>
+
+    </form>
+
+    <hr>
+
     <% if (codeEntries.length === 0) { %>
-        <p>No code has been archived yet.</p>
+        <p>No code matches your search or filters.</p>
     <% } %>
 
     <% codeEntries.forEach(entry => { %>
@@ -23,9 +80,20 @@
 
             <h2><%= entry.title %></h2>
 
-            <p><strong>Subject:</strong> <%= entry.subject %></p>
-            <p><strong>Category:</strong> <%= entry.category %></p>
-            <p><strong>Language:</strong> <%= entry.language %></p>
+            <p>
+                <strong>Subject:</strong>
+                <%= entry.subject %>
+            </p>
+
+            <p>
+                <strong>Category:</strong>
+                <%= entry.category %>
+            </p>
+
+            <p>
+                <strong>Language:</strong>
+                <%= entry.language %>
+            </p>
 
             <% if (entry.description) { %>
                 <p>
@@ -35,7 +103,10 @@
             <% } %>
 
             <% if (entry.tags) { %>
-                <p><strong>Tags:</strong> <%= entry.tags %></p>
+                <p>
+                    <strong>Tags:</strong>
+                    <%= entry.tags %>
+                </p>
             <% } %>
 
             <% if (entry.code) { %>
